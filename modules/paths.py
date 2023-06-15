@@ -4,9 +4,6 @@ from modules.paths_internal import models_path, script_path, data_path, extensio
 
 import modules.safe  # noqa: F401
 
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # data_path = cmd_opts_pre.data
 sys.path.insert(0, script_path)
@@ -14,11 +11,9 @@ sys.path.insert(0, script_path)
 # search for directory of stable diffusion in following places
 sd_path = None
 possible_sd_paths = [os.path.join(script_path, 'repositories/stable-diffusion-stability-ai'), '.', os.path.dirname(script_path)]
-possible_sd_paths += [os.getenv("STABLE_DIFFUSION_PATH")]
-
 
 for possible_sd_path in possible_sd_paths:
-    if os.path.exists(os.path.join(possible_sd_path, 'ldm/models/diffusion/ddpm.py')):
+    if os.path.exists(os.path.join(possible_sd_path, 'modules/models/diffusion/ddpm_edit.py')):
         sd_path = os.path.abspath(possible_sd_path)
         break
 
